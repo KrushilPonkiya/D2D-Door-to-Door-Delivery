@@ -22,13 +22,10 @@ def handlesignup(request):
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
 
-        # Check for errirneous inputs
-        # if email and User.objects.filter(email == email).exclude(username == username).exists():
-        #     messages.error(request, "Enter Unique Username")
-        #     raise forms.ValidationError("Email , username , tel must be unique")
-
+  
         if len(username) > 10:
             messages.error(request, "Username must under 10 characters")
+            return redirect("home")
 
         if not username.isalnum():
             messages.error(request, "Username should only contain letters and numbers")
@@ -42,7 +39,6 @@ def handlesignup(request):
         myuser.first_name = fname
         myuser.last_name = lname
         myuser.phone_number = tel
-        # myuser.User_Type = radio
         myuser.save()
         messages.success(request, "Your D2D account has been successfully created")
         return redirect('home')
@@ -54,12 +50,12 @@ def handlelogin(request):
     if request.method == 'POST':
         loginusername = request.POST['loginusername']
         loginpass = request.POST['loginpass']
-        # logincheck = request.POST['logincheck']
+        
         user = authenticate(username=loginusername, password=loginpass)
         if user is not None:
             login(request, user)
             messages.success(request, "You are successfully Logged In")
-            return redirect('dashboard')
+            return redirect('userdashboard')
         else:
             messages.error(request, "Invalid credentials, Please try again")
             return redirect('home')
