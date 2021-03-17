@@ -4,14 +4,32 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.forms import User
 from django.contrib import messages
 from .models import *
-
-
 # Create your views here.
 
 
 def deliverydashboard(request):
     return render(request, 'deliveryperson/dashboard.html')
 
+
+def deliveryongoing(request):
+    return render(request, 'deliveryperson/ongoing.html')
+
+
+def deliveryrejected(request):
+    return render(request, 'deliveryperson/rejected.html')
+
+
+def deliverycompleted(request):
+    return render(request, 'deliveryperson/completed.html')
+    
+
+def deliverynotifications(request):
+    return render(request, 'deliveryperson/notifications.html')
+    
+
+def deliveryuser(request):
+    return render(request, 'deliveryperson/user.html')
+    
 
 def handlefeedback(request):
     if request.method == 'POST':
@@ -25,4 +43,3 @@ def handlefeedback(request):
             return redirect('delivery_dashboard')
     else:
         return HttpResponse('404 - Not Found')
-

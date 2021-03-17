@@ -3,9 +3,8 @@
 {% load static %}
 
 <head>
-
-    <title>{% block title %} D2D | Door to Door Delivery Service {% endblock %} </title>
-
+<title>
+    {% block title %} D2D | Door to Door Delivery Service {% endblock %}</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="description" content="">
@@ -20,7 +19,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
 
 </head>
 {% block content %}
@@ -105,11 +104,11 @@
                             </div>
 
                               <div class="form-check" >
-                                <input type="radio" class="form-check-input" id="User" name="radio-stacked" required>
+                                <input type="radio" class="form-check-input" id="User" name="utype" value="user" required>
                                 <label class="form-check-label" for="User">User</label>
                               </div>
                               <div class="form-check mb-3">
-                                <input type="radio" class="form-check-input" id="d_person" name="radio-stacked" required>
+                                <input type="radio" class="form-check-input" id="d_person" name="utype" value="deliveryperson" required>
                                 <label class="form-check-label" for="d_person">Delivery person</label>
                               </div>
 
@@ -185,11 +184,11 @@
                             </div>
     
                            <div class="form-check-inline" >
-                                <input type="radio" class="form-check-input" id="User" name="utype" required>
+                                <input type="radio" class="form-check-input" id="User" name="utype" value="user" required>
                                 <label class="form-check-label" for="User">User</label>
                               </div>
                               <div class="form-check mb-3">
-                                <input type="radio" class="form-check-input" id="d_person" name="utype" required>
+                                <input type="radio" class="form-check-input" id="d_person" name="utype" value="delivery_person" required>
                                 <label class="form-check-label" for="d_person">Delivery person</label>
                               </div>
     

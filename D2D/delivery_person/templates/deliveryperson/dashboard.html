@@ -1,318 +1,261 @@
-{% extends "index.html" %}
+<!DOCTYPE html>
+
+<html lang="en">
 {% load static %}
-{% block title %} Delivery D2D | Door to Door Delivery Service {% endblock %}
-{% block content %}
-    <!-- MENU BAR -->
-    <nav class="navbar navbar-expand-lg sticky-top" style="padding: 0px;">
-        <div class="container">
 
-            <a class="navbar-brand" href="index.html">D2D</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2"  type="search" placeholder="Search user" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav ml-lg-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link smoothScroll">Home</a>
+<head>
+    <meta charset="utf-8" />
+    <title>
+        D2D | Dashboard | Door to Delivery
+    </title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="{% static 'css/d_bootstrap.min.css' %}" rel="stylesheet" />
+    <!-- <link href="{% static 'css/light-bootstrap-dashboard.css' %} " rel="stylesheet" /> -->
+    <link rel="stylesheet" href="{% static 'css/d_dashboard_style.css' %}">
+</head>
 
+{% block dashboard %}
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-color="red">
+
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="#" class="simple-text"> D2D </a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'delivery_dashboard' %}">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Pending Deliveries</p>
+                        </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link smoothScroll">About Us</a>
+                    <li>
+                        <a class="nav-link" href="{% url 'ongoing' %}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Ongoing Deliveries</p>
+                        </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="#class" class="nav-link smoothScroll">Services</a>
+                    <li>
+                        <a class="nav-link" href="  {% url 'rejected' %}">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Rejected Deliveries</p>
+                        </a>
                     </li>
-                    <!-- 
-
-                    <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll">Schedules</a>
-                    </li> -->
-
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link smoothScroll">Contact</a>
+                    <li>
+                        <a class="nav-link" href=" {% url 'completed' %}">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Completed Deliveries</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="  {% url 'notifications' %}">
+                            <i class="nc-icon nc-bell-55"></i>
+                            <p>Notifications</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="  {% url 'user' %}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Edit Profile</p>
+                        </a>
                     </li>
                 </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg" color-on-scroll="500">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"> Pending Deliveries </a>
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <ul class="nav navbar-nav mr-auto">
 
-                <ul class="social-icon ml-lg-3">
-                    <li><a href="#" title="Chat" class="fa fa-comment"></a></li>
-                    <li>
-                        <div class="dropdown" role="button" id="showNotifications" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-
-                            <a href="#" title="Notifications" class="fa fa-bell"></a>
-                            <div class="dropdown-menu" aria-labelledby="showNotifications">
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Notification
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <i class="nc-icon nc-planet"></i>
+                                    <span class="notification">5</span>
+                                    <span class="d-lg-none">Notification</span>
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Another
-                                    notification</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Check
-                                    all</a>
-                            </div>
-                        </div>
-
-                    </li>
-
-                    <li>
-                        <div class="dropdown" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <a href="#" title="Profile" class="fa fa-user-circle"></a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Account
-                                    Settings </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">other
-                                    options</a>
-                                <div class="dropdown-divider"></div>
-
-                                <form action="{% url 'logout' %}">
-                                    <a href="{% url 'logout' %}" class="dropdown-item notification"
-                                        style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Logout
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Notification 1</a>
+                                    <a class="dropdown-item" href="#">Notification 2</a>
+                                    <a class="dropdown-item" href="#">Notification 3</a>
+                                    <a class="dropdown-item" href="#">Notification 4</a>
+                                    <a class="dropdown-item" href="#">Another notification</a>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <form class="header__searchbar" action="">
+                                        <input type="text" placeholder="search">
+                                        <button type="submit">
+                                            <i class="nc-icon nc-zoom-split"></i>
+                                        </button>
+                                    </form>
+                                    <!-- <i class="nc-icon nc-zoom-split"></i>
+                                    <span class="d-lg-block">&nbsp;Search</span> -->
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <span class="no-icon">Account</span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="no-icon">Dropdown</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">
+                                    <span class="no-icon">Log out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            {% endblock %} {% for message in messages %}
+            <div id="alert" class="alert mb-0 alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <strong>Message: </strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            {% endfor %} {% block content %}
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover">
+                                <div class="card-header">
+                                    <h4 class="card-title">List of all Pending Deliveries</h4>
+                                    <p class="card-category">
+                                        Here is a subtitle for this table
+                                    </p>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>From</th>
+                                            <th>To</th>
+                                            <th>Contact</th>
+                                            <th>City</th>
+                                            <th>Pickup time</th>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td><a href="">1</a></td>
+                                                <td>Anas Shaikh</td>
+                                                <td>Krushil Ponkiya</td>
+                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
+                                                <td>Ahmedabad</td>
+                                                <td>Date - time</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="">2</a></td>
+                                                <td>Minerva Hooper</td>
+                                                <td>Jay Shah</td>
+                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
+                                                <td>Sinaai-Waas</td>
+                                                <td>Date - time</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="">3</a></td>
+                                                <td>Sage Rodriguez</td>
+                                                <td>Smit Shah</td>
+                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
+
+                                                <td>Baileux</td>
+                                                <td>Date - time</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><a href="">4</a></td>
+                                                <td>Philip Chaney</td>
+                                                <td>Kaif Shaikh</td>
+                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
+                                                <td>Overland Park</td>
+                                                <td>Date - time</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><a href="">5</a></td>
+                                                <td>Doris Greene</td>
+                                                <td>Chiru Lnt</td>
+                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
+                                                <td>Feldkirchen in Kärnten</td>
+                                                <td>Date - time</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><a href="">6</a></td>
+                                                <td>Mason Porter</td>
+                                                <td>Kumaar</td>
+                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
+                                                <td>Gloucester</td>
+                                                <td>Date - time</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+            <footer class="footer">
+                <div class="container-fluid">
+
+                    <p class="copyright text-center">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        <a href="">D2D- Door to Door Delivery</a>, made with love for a better web
+                    </p>
+                </div>
+            </footer>
         </div>
-    </nav>
-
-
-
-
-    {% for message in messages %}
-    <div id="alert" class="alert mb-0 alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        <strong>Message: </strong> {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
-    {% endfor %}
-
-
-
-
-
-    <!-- HERO -->
-    <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
-
-        <div class="bg-overlay"></div>
-
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-8 col-md-10 mx-auto col-12">
-                    <div class="hero-text mt-5 text-center">
-
-                        <h6 data-aos="fade-up" data-aos-delay="300">Easiest way to send or receive packages</h6>
-
-                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">D2D <br> Door to Door Delivery
-                        </h1>
-
-                        <a href="#" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="600">Send
-                            Package</a>
-
-                        <a href="#" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">Request
-                            Package</a>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section class="feature" id="feature">
-        <div class="container">
-            <div class="row">
-
-                <div class="d-flex mb-lg-0 mb-4 flex-column justify-content-center col-md-6 col-12">
-                    <h2 class="mb-3 text-white" data-aos="fade-up">Get Sent!</h2>
-
-                    <h6 class="mb-4 text-white" data-aos="fade-up">How to send?</h6>
-
-                    <p class="text-justify" data-aos="fade-up" data-aos-delay="200">Just log in, add a pickup and
-                        drop-off address and your package will be on its way. Whether you want to send gifts, books, or
-                        a meal parcel, we help you deliver them at the right time. You can also write special
-                        instructions for your parcel delivery.</p>
-
-                    <a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">Start
-                        sending!</a>
-                </div>
-                <div class="d-flex flex-column justify-content-center col-md-6 col-12">
-                    <h2 class="mb-3 text-white" data-aos="fade-up">Get delivered!</h2>
-
-                    <h6 class="mb-4 text-white " data-aos="fade-up">How to request?</h6>
-
-                    <p class="text-justify" data-aos="fade-up" data-aos-delay="200">The same as you deliver your parcel
-                        from one point to another, you can get delivered anything you want from anywhere across the
-                        city. Just login, request the person(sender) and get on with it. Receive the key, document,
-                        lunch box or anything.</p>
-
-                    <a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">Get
-                        delivered</a>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- ABOUT -->
-    <section class="about section" id="about">
-        <h2 class="text-center mb-lg-5 mb-3" data-aos="fade-up" data-aos-delay="200">About us</h2>
-        <div class="container">
-            <div class="row">
-
-                <div class="mt-lg-2 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
-                    <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Hello, we are D2D!</h2>
-
-                    <p data-aos="fade-up" data-aos-delay="400">With so many courier companies out there, finding the
-                        best one to match your needs takes considerable research and time. Multiple factors need to be
-                        taken into account when looking for the best company – Location from your place, prices,
-                        delivery timing and locations.</p>
-
-                    <p data-aos="fade-up" data-aos-delay="500">At D2D, we want to give everyone
-                        easy access to get anything, from anywhere within their city, having a sustainable impact on the
-                        economy, society, and environment: we are a tech-first responsible company.</p>
-
-                </div>
-
-                <div class="d-flex align-items-center mt-lg-2 ml-lg-auto col-lg-6 col-12" data-aos="fade-up"
-                    data-aos-delay="700">
-
-                    <img src="{% static 'images/team/about1.png' %}" class="img-fluid" alt="">
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="d-flex align-items-center mt-lg-2 ml-lg-auto col-lg-6 col-12" data-aos="fade-up"
-                    data-aos-delay="700">
-
-                    <img src="{% static 'images/team/about2.png' %}" class="img-fluid" alt="">
-                </div>
-
-                <div class="mt-lg-2 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
-                    <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">What is D2D exactly?</h2>
-
-                    <p data-aos="fade-up" data-aos-delay="400">D2D is an on-demand delivery platform that allows you to
-                        send or get delivered whatever you want. Just follow the steps required for each option, and
-                        once you’re finished, a courier will accept your order and deliver it in minutes. You can track
-                        and follow the delivery in real-time. Don’t forget to rate your experience once you receive your
-                        delivery.</p>
-
-                    <p data-aos="fade-up" data-aos-delay="500">D2D platform eliminates the hassle of sending and
-                        receiving packages, couriers, or things you often forget. We connect users, businesses, and
-                        couriers to make that possible. The project was born with the aim of transforming the way users
-                        acquire what they need, making their cities more accessible.</p>
-
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- CLASS -->
-    <section class="class section" id="class">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12 col-12 text-center mb-5">
-                    <h6 data-aos="fade-up">Get a Perfect </h6>
-
-                    <h2 data-aos="fade-up" data-aos-delay="200">Delivery Solution</h2>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
-                    <div class="class-thumb">
-                        <img src="{% static 'images/class/services1.png' %}" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Communicate</h3>
-                            <p class="mt-3">Chat feature to help users to communicate for better experience.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
-                    <div class="class-thumb">
-                        <img src="{% static 'images/class/service2.png' %}" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Live Tracking</h3>
-
-                            <p class="mt-3">Allows users to check the process status, track the live location and get
-                                updated.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
-                    <div class="class-thumb">
-                        <img src="{% static 'images/class/service4.png' %}" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Quick</h3>
-
-                            <p class="mt-3">Provides the support to tiny, short and local trasportations. You can order
-                                food from friend's home.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-<!-- CONTACT -->
-    <section class="contact section" id="contact">
-        <div class="container">
-            <div class="row">
-
-                <div class="ml-auto d-flex flex-column text-center col-12">
-                    <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Feel free to ask anything</h2>
-
-                    <form   action="/delivery/feedback" method="post" class="contact-form webform" data-aos="fade-up"
-                        data-aos-delay="400" role="form">
-
-                        <input type="text" class="form-control" name="cf-name" id="cf-name" placeholder="Name" required>
-
-                        <input type="email" class="form-control" name="cf-email" id="cf-email" placeholder="Email"
-                            required>
-
-                        <textarea class="form-control" rows="5" name="cf-message" id="cf-message" placeholder="Message"
-                            required></textarea>
-
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="form-actions">
-                            <button type="submit" class="form-control" id="submit-button" name="submit">Send
-                                Message</button>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </section>
+</body>
+{% block script %}
+<!--   Core JS Files   -->
+<script src="{% static 'js/core/jquery.3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/core/popper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="{% static 'js/plugins/bootstrap-switch.js' %}"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="{% static 'js/light-bootstrap-dashboard.js' %}" type="text/javascript"></script>
 {% endblock %}
+
+</html>
