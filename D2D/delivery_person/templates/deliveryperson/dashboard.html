@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="{% static 'css/d_dashboard_style.css' %}">
 </head>
 
-{% block dashboard %}
-
+{% block content %}
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="red">
@@ -138,14 +137,16 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-            {% endblock %} {% for message in messages %}
+
+            {% for message in messages %}
             <div id="alert" class="alert mb-0 alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                 <strong>Message: </strong> {{ message }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {% endfor %} {% block content %}
+            {% endfor %}
+
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -231,7 +232,7 @@
                     </div>
                 </div>
             </div>
-            {% endblock %}
+
             <footer class="footer">
                 <div class="container-fluid">
 
@@ -247,7 +248,7 @@
         </div>
     </div>
 </body>
-{% block script %}
+
 <!--   Core JS Files   -->
 <script src="{% static 'js/core/jquery.3.2.1.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/core/popper.min.js' %}" type="text/javascript"></script>

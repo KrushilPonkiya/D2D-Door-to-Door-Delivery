@@ -8,28 +8,40 @@ from .models import *
 
 
 def deliverydashboard(request):
-    return render(request, 'deliveryperson/dashboard.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'deliveryperson/dashboard.html')
+    else:
+        return HttpResponse('404 - Not Found')
 
 def deliveryongoing(request):
-    return render(request, 'deliveryperson/ongoing.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'deliveryperson/ongoing.html')
+    else:
+        return HttpResponse('404 - Not Found')
 
 def deliveryrejected(request):
-    return render(request, 'deliveryperson/rejected.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'deliveryperson/rejected.html')
+    else:
+        return HttpResponse('404 - Not Found')
 
 def deliverycompleted(request):
-    return render(request, 'deliveryperson/completed.html')
-    
+    if request.user.is_authenticated:
+        return render(request, 'deliveryperson/completed.html')
+    else:
+        return HttpResponse('404 - Not Found')
 
 def deliverynotifications(request):
-    return render(request, 'deliveryperson/notifications.html')
-    
+    if request.user.is_authenticated:
+        return render(request, 'deliveryperson/notifications.html')
+    else:
+        return HttpResponse('404 - Not Found')
 
 def deliveryuser(request):
-    return render(request, 'deliveryperson/user.html')
-    
+    if request.user.is_authenticated:
+        return render(request, 'deliveryperson/user.html')
+    else:
+        return HttpResponse('404 - Not Found')
 
 def handlefeedback(request):
     if request.method == 'POST':

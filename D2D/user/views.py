@@ -8,8 +8,10 @@ from .models import Feedback
 
 
 def userdashboard(request):
-    return render(request, 'user/dashboard.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'user/dashboard.html')
+    else:
+        return HttpResponse('404 - Not Found')
 
 def handlefeedback(request):
     if request.method == 'POST':
