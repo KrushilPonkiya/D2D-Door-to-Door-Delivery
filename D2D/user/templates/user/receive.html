@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load static %}
+    <title>D2D | Sending Packages</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+
+</head>
+
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+    <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+            <a class="navbar-brand" href="{% url 'userdashboard' %}">D2D</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search user" aria-label="Search">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'userdashboard' %}" class="nav-link smoothScroll">Home</a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'userdashboard' %}" class="nav-link smoothScroll">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'userdashboard' %}" class="nav-link smoothScroll">Services</a>
+                    </li>
+                    <!-- 
+
+                    <li class="nav-item">
+                        <a href="#schedule" class="nav-link smoothScroll">Schedules</a>
+                    </li> -->
+
+                    <li class="nav-item">
+                        <a href="{% url 'userdashboard' %}" class="nav-link smoothScroll">Contact</a>
+                    </li>
+                </ul>
+
+                <ul class="social-icon ml-lg-3">
+                    <li><a href="#" title="Chat" class="fa fa-comment"></a></li>
+                    <li>
+                        <div class="dropdown" role="button" id="showNotifications" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+
+                            <a href="#" title="Notifications" class="fa fa-bell"></a>
+                            <div class="dropdown-menu" aria-labelledby="showNotifications">
+                                <a class="dropdown-item notification" href="#"
+                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Notification
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item notification" href="#"
+                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Another
+                                    notification</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item notification" href="#"
+                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Check
+                                    all</a>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <div class="dropdown" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <a href="#" title="Profile" class="fa fa-user-circle"></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item notification" href="#"
+                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Account
+                                    Settings </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item notification" href="#"
+                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">other
+                                    options</a>
+                                <div class="dropdown-divider"></div>
+
+                                <form action="{% url 'logout' %}">
+                                    <a href="{% url 'logout' %}" class="dropdown-item notification" style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">
+                                        Logout
+                                    </a>
+                                </form>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- Register -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="form-row align-items-center justify-content-center">
+
+                <div class="d-flex flex-column  col-12">
+                    <h2 class="mb-4 pb-2 text-center" data-aos="fade-up" data-aos-delay="200">Request Packages easily!</h2>
+
+                    <form action="{% url 'handlerequestpackage' %}" method="post" class="contact-form" data-aos="fade-up" data-aos-delay="400"
+                        role="form">
+
+                        <div id="registerForm">
+
+                            <div class="form-group ">
+                                <label for="My_username">Your Username</label>
+                                <input type="text" class="form-control" name="My_username" id="My_username" value={{user.username}}
+                                    placeholder={{user.username}} readonly>
+                            </div>
+                            <div class="form-group ">
+                                <label for="sender_username">I request to</label>
+                                <input type="text" class="form-control" name="sender_username" id="sender_username"
+                                    placeholder="sender's username">
+                            </div>
+                            <div class="form-group ">
+                                <label for="product_name">Product Details</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" id="product_name" name="product_name"
+                                            placeholder="Product Name">
+
+                                    </div>
+                                    <div class="col">
+                                        <input type="number" class="form-control" name="product_weight"
+                                            placeholder="Product weight (approximate) kg">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group ">
+                                <label for="product_name">Delivery Details</label>
+                                <input type="number" class="form-control" name="number" placeholder="Contact number">
+                                <input type="text" class="form-control" name="pickup_add" placeholder="Pickup Address">
+                                <input type="text" class="form-control" name="delivery_add" placeholder="Delivery Address">
+                                
+                            </div>
+
+
+
+                        </div>
+                        <button type="submit" class="form-control mb-1" id="submit-button" name="submit">Create Request</button>
+                        <a class="btn btn-outline-dark mt-0 form-control" href="/user/sendpackage">Send Packages Instead?</a>
+                    {% csrf_token %}
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="ml-auto col-lg-4 col-md-5">
+                    <p class="copyright-text">Copyright &copy; 2021 D2D- Door to Door Delivery.
+
+                    </p>
+                </div>
+
+                <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+                    <p class="mr-4">
+                        <i class="fa fa-envelope-o mr-1"></i>
+                        <a href="#">hello@company.co</a>
+                    </p>
+
+                    <p><i class="fa fa-phone mr-1"></i> 010-020-0840</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- SCRIPTS -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/smoothscroll.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>

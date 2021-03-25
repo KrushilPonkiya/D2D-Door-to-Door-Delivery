@@ -22,9 +22,14 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
+    path('D2D-Login', views.Login, name='Login'),
+    path('D2D-Signup', views.signup, name='Signup'),
+
+    path('user/', include('user.urls')),
+    path('delivery/', include('delivery_person.urls')),
+
+    # For Authentication in Register, Login, Logout
     path('signup', views.handlesignup, name='signup'),
     path('login', views.handlelogin, name='login'),
     path('logout', views.handlelogout, name='logout'),
-    path('user/', include('user.urls')),
-    path('delivery/', include('delivery_person.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

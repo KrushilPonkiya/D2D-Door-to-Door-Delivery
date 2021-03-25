@@ -1,0 +1,171 @@
+{% extends 'index.html' %}
+{% load static %}
+<title>{% block title %}D2D - Signup {% endblock %}</title>
+{% block content %}
+
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+    <!-- MENU BAR -->
+   <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a  class="navbar-brand" href="index.html">D2D</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link smoothScroll">Home</a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link smoothScroll">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link smoothScroll">Services</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link smoothScroll">Contact</a>
+                    </li>
+                </ul>
+                 <form action="{% url 'Login' %}">
+                     <button type="submit" class="btn btn-outline-danger mx-2" >
+                                Login
+                     </button>
+                 </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Register -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="form-row align-items-center justify-content-center">
+
+                <div class="d-flex flex-column text-center col-md-8 col-sm-12">
+                    <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Create Account for free!</h2>
+
+                    <form action="{% url 'signup' %}" method="post" class="contact-form" data-aos="fade-up" data-aos-delay="400"
+                        role="form">
+                        <div class="row text-left">
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="user_type" id="user" value="user"
+                                        checked onclick=userType()>
+                                    <label class="form-check-label" for="user">Normal User</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="user_type" id="delivery_person"
+                                        value="delivery_person" onclick=userType()>
+                                    <label class="form-check-label" for="delivery_person">Delivery Person</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="registerForm">
+                            <div class="userRegForm">
+                                <input type="text" class="form-control mb-0" name="user_username" placeholder="username" required>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="firstname"
+                                            placeholder="First Name" required>
+
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>
+
+                                    </div>
+                                </div>
+
+
+                                <input type="email" class="form-control mt-0" name="email" placeholder="Email" required>
+                                <input type="number" class="form-control" name="number" placeholder="Contact number" required>
+                                <input type="password" class="form-control" name="pass1" placeholder="Password" required>
+                                <input type="password" class="form-control" name="pass2"
+                                    placeholder="Confirm Password" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="form-control mb-1" id="submit-button" name="submit">Create
+                            Account</button>
+                        <a class="btn btn-outline-dark mt-0 form-control" href="/login.html">Already have an
+                            account?</a>
+                    {% csrf_token %}
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+<!--        &lt;!&ndash; Signup  Modal &ndash;&gt;-->
+<!--                        <form class="row g-2 needs-validation novalidation" action='/signup' method='post'>-->
+<!--                            <div class="mb-3">-->
+<!--                                <label for="username" class="form-label">Username</label>-->
+<!--                                <input type="text" style="margin: 5px 0;" class="form-control"-->
+<!--                                    placeholder="Enter unique username" name="username" id="username" required>-->
+<!--                            </div>-->
+
+<!--                            <div class="col-md-6">-->
+<!--                                <label for="fname" class="form-label">First name</label>-->
+<!--                                <input type="text" style="margin: 5px 0;" class="form-control" id="fname" name="fname"-->
+<!--                                    placeholder="first name" required>-->
+<!--                                <div class="valid-feedback">-->
+<!--                                    Looks good!-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label for="lname" class="form-label">Last name</label>-->
+<!--                                <input type="text" style="margin: 5px 0;" class="form-control" id="lname" name="lname"-->
+<!--                                    placeholder="last name" required>-->
+<!--                                <div class="valid-feedback">-->
+<!--                                    Looks good!-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="mb-3">-->
+<!--                                <label for="email" class="form-label">Phone number</label>-->
+<!--                                <input type="number" style="margin: 5px 0;" class="form-control" id="tel" name="tel"-->
+<!--                                    placeholder="0123456789" aria-describedby="emailHelp" required>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="mb-3">-->
+<!--                                <label for="email" class="form-label">Enter your email</label>-->
+<!--                                <input type="email" style="margin: 5px 0;" class="form-control" id="email" name="email"-->
+<!--                                    placeholder="abc@gmail.com" aria-describedby="emailHelp" required>-->
+<!--                            </div>-->
+
+<!--                           <div class="form-check-inline" >-->
+<!--                                <input type="radio" class="form-check-input" id="User" name="utype" value="user" required>-->
+<!--                                <label class="form-check-label" for="User">User</label>-->
+<!--                              </div>-->
+<!--                              <div class="form-check mb-3">-->
+<!--                                <input type="radio" class="form-check-input" id="d_person" name="utype" value="delivery_person" required>-->
+<!--                                <label class="form-check-label" for="d_person">Delivery person</label>-->
+<!--                              </div>-->
+
+
+<!--                            <div class="mb-3">-->
+<!--                                <label for="pass1" class="form-label">Enter your Password</label>-->
+<!--                                <input type="password" style="margin: 5px 0;" class="form-control"-->
+<!--                                    placeholder="Enter your password" name="pass1" id="pass1" required>-->
+<!--                            </div>-->
+<!--                            <div class="mb-3">-->
+<!--                                <label for="pass2" class="form-label"> Confirm Password</label>-->
+<!--                                <input type="password" style="margin: 5px 0;" class="form-control"-->
+<!--                                    placeholder="Enter your password again" name="pass2" id="pass2" required>-->
+<!--                            </div>-->
+<!--                            {% csrf_token %}-->
+<!--                            <button type="submit" class="btn btn-dark">Submit</button>-->
+<!--                        </form>`-->
+
+
+
+    <!-- SCRIPTS -->
+    <script src="{% static 'js/register.js' %}"></script>
+    {% endblock %}
