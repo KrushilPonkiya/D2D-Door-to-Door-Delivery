@@ -1,5 +1,5 @@
 from django.db import models
-from user.models import *
+# from user.models import *
 from django.contrib.auth.models import User
 
 
@@ -24,6 +24,52 @@ class Delivery_Person(models.Model):
 
 
 class Order(models.Model):
-    created = models.DateTimeField()
-    requestpackage = models.ForeignKey(Requestpackage, on_delete=models.PROTECT, null=True, blank=True)
-    sendackage = models.ForeignKey(Sendpackage, on_delete=models.PROTECT, null=True, blank=True)
+    order_id = models.AutoField
+    requester_name = models.CharField(max_length=50, default="")
+    sender_name = models.CharField(max_length=50, default="")
+    receiver_name = models.CharField(max_length=50, default="")
+    product_name = models.CharField(max_length=50, default="")
+    product_weight = models.CharField(max_length=50, default="")
+    contact_number = models.CharField(max_length=12, default="")
+    pickup_address = models.TextField(max_length=250, default="")
+    delivery_address = models.TextField(max_length=250, default="")
+    delivery_city = models.TextField(max_length=50, default="")
+    DateTime =  models.DateTimeField(auto_now=True)
+
+
+class Ongoing(models.Model):
+    ongoing_id = models.AutoField
+    sender_name = models.CharField(max_length=50, default="")
+    receiver_name = models.CharField(max_length=50, default="")
+    product_name = models.CharField(max_length=50, default="")
+    product_weight = models.CharField(max_length=50, default="")
+    contact_number = models.CharField(max_length=12, default="")
+    pickup_address = models.TextField(max_length=250, default="")
+    delivery_address = models.TextField(max_length=250, default="")
+    delivery_city = models.TextField(max_length=50, default="")
+    DateTime =  models.DateTimeField(auto_now=True)
+
+
+class Rejected(models.Model):
+    rejected_id = models.AutoField
+    sender_name = models.CharField(max_length=50, default="")
+    receiver_name = models.CharField(max_length=50, default="")
+    product_name = models.CharField(max_length=50, default="")
+    product_weight = models.CharField(max_length=50, default="")
+    contact_number = models.CharField(max_length=12, default="")
+    pickup_address = models.TextField(max_length=250, default="")
+    delivery_address = models.TextField(max_length=250, default="")
+    delivery_city = models.TextField(max_length=50, default="")
+    DateTime =  models.DateTimeField(auto_now=True)
+
+class Completed(models.Model):
+    completed_id = models.AutoField
+    sender_name = models.CharField(max_length=50, default="")
+    receiver_name = models.CharField(max_length=50, default="")
+    product_name = models.CharField(max_length=50, default="")
+    product_weight = models.CharField(max_length=50, default="")
+    contact_number = models.CharField(max_length=12, default="")
+    pickup_address = models.TextField(max_length=250, default="")
+    delivery_address = models.TextField(max_length=250, default="")
+    delivery_city = models.TextField(max_length=50, default="")
+    DateTime =  models.DateTimeField(auto_now=True)

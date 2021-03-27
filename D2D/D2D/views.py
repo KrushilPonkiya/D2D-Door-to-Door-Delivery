@@ -39,54 +39,60 @@ def handlesignup(request):
         pass2 = request.POST.get('pass2')
         choice = request.POST.get('user_type')
         if (choice == 'user'):
-            if len(username)>10:
+            if len(username) > 10:
                 messages.error(request, "Username must under 10 characters")
+                return redirect("Signup")
             if not username.isalnum():
                 messages.error(request, "Username should only contain letters and numbers")
-                return redirect("home")
+                return redirect("Signup")
             if (pass1==pass2):
                 if (User.objects.filter(username=username).exists()):
-                    messages.error(request, '"'+username+'"' + ' This username alredy taken please try again')
-                    return redirect('home')
+                    messages.error(request, '"' + username + '"' + ' This username alredy taken please try again')
+                    return redirect('Signup')
                 elif (User.objects.filter(email=email).exists()):
                     messages.error(request,'"'+email+'"'+ " This E-mail alredy taken please try again")
-                    return redirect('home')
+                    return redirect('Signup')
                 else:
                     u = User.objects.create_user(username=username, password=pass1, email=email, first_name=fname, last_name=lname)
                     group = Group.objects.get(name="Users")
                     u.groups.add(group)
+                    # profile = user.UserProfile.objects.get_or_create(user=u,Phone_Number=Phone_Number)
+                    # profile.save()
                     u.save()
-                    messages.success(request, fname + 'Your D2D Account has been Successfully Created')
-                    return redirect('home')
+                    # print(u)
+                    # print(group)
+                    messages.success(request, fname + ' Your D2D Account has been Successfully Created')
+                    return redirect('Login')
             else:
                 messages.error(request, "Password does not matched")
-                return redirect("home")
+                return redirect("Signup")
         else:
             if (choice=='delivery_person'):
                 if len(username) > 10:
                     messages.error(request, "Username must under 10 characters")
-                    return redirect("home")
+                    return redirect("Signup")
                 if not username.isalnum():
                     messages.error(request, "Username should only contain letters and numbers")
-                    return redirect("home")
+                    return redirect("Signup")
                 if (pass1 == pass2):
                     if (User.objects.filter(username=username).exists()):
-                        messages.error(request, username + ' This username already taken please try again')
-                        return redirect('home')
+                        messages.error(request, '"' + username + '"' + ' This username already taken please try again')
+                        return redirect('Signup')
                     elif (User.objects.filter(email=email).exists()):
-                        messages.error(request, email + " This E-mail already taken please try again")
-                        return redirect('home')
+                        messages.error(request,'"' + email + '"'+ " This E-mail already taken please try again")
+                        return redirect('Signup')
                     else:
                         user = User.objects.create_user(username=username, password=pass1, email=email,
                                                         first_name=fname, last_name=lname)
                         group = Group.objects.get(name="Delivery_person")
                         user.groups.add(group)
+
                         user = user.save()
-                        messages.success(request, fname + 'Your D2D Account has been Successfully Created')
-                        return redirect('home')
+                        messages.success(request, fname + ' Your D2D Account has been Successfully Created')
+                        return redirect('Login')
                 else:
                     messages.error(request, "Password does not matched")
-                    return redirect("home")
+                    return redirect("Signup")
     else:
         return HttpResponse('404')
 
@@ -105,7 +111,7 @@ def handlelogin(request):
                 return redirect('userdashboard')
         else:
             messages.error(request, "Invalid credentials, Please try again")
-            return redirect('home')
+            return redirect('Login')
 
 
 def handlelogout(request):

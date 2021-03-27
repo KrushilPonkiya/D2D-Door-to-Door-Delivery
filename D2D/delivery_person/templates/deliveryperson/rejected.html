@@ -1,7 +1,5 @@
-{% extends "deliveryperson/dashboard.html" %}
-{% load static %}
+{% extends "deliveryperson/dashboard.html" %} {% load static %} {% block content %}
 
-{% block content %}
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="red">
@@ -63,7 +61,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="nav navbar-nav mr-auto">
-
+                            {% comment %}
                             <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <i class="nc-icon nc-planet"></i>
@@ -107,8 +105,8 @@
                                     <div class="divider"></div>
                                     <a class="dropdown-item" href="#">Separated link</a>
                                 </div>
-                            </li>
-                            <li class="nav-item">
+                            </li> {% endcomment %}
+                            <li class="nav-item" style="margin-left:800px;">
                                 <a class="nav-link" href="{% url 'logout' %}">
                                     <span class="no-icon">Log out</span>
                                 </a>
@@ -132,6 +130,7 @@
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
                                         <thead>
+                                            {% if rejected %}
                                             <th>ID</th>
                                             <th>From</th>
                                             <th>To</th>
@@ -140,60 +139,16 @@
                                             <th>Pickup time</th>
                                         </thead>
                                         <tbody>
-
+                                            {% for re in rejected %}
                                             <tr>
-                                                <td><a href="">1</a></td>
-                                                <td>Anas Shaikh</td>
-                                                <td>Krushil Ponkiya</td>
-                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
-                                                <td>Ahmedabad</td>
-                                                <td>Date - time</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="">2</a></td>
-                                                <td>Minerva Hooper</td>
-                                                <td>Jay Shah</td>
-                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
-                                                <td>Sinaai-Waas</td>
-                                                <td>Date - time</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="">3</a></td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>Smit Shah</td>
-                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
+                                                <td><a href="{% url 'viewrejectedorders' re.id %}">{{re.id}}</a></td>
+                                                <td>{{re.sender_name}}</td>
+                                                <td>{{re.receiver_name}}{{re.requester_name}}</td>
+                                                <td><a href="tel:{{re.contact_number}}"> {{re.contact_number}}</a></td>
+                                                <td>{{re.delivery_city}}</td>
+                                                <td>{{re.DateTime}}</td>
+                                            </tr>{% endfor %}{% endif %}
 
-                                                <td>Baileux</td>
-                                                <td>Date - time</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td><a href="">4</a></td>
-                                                <td>Philip Chaney</td>
-                                                <td>Kaif Shaikh</td>
-                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
-                                                <td>Overland Park</td>
-                                                <td>Date - time</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td><a href="">5</a></td>
-                                                <td>Doris Greene</td>
-                                                <td>Chiru Lnt</td>
-                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
-                                                <td>Feldkirchen in Kärnten</td>
-                                                <td>Date - time</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td><a href="">6</a></td>
-                                                <td>Mason Porter</td>
-                                                <td>Kumaar</td>
-                                                <td><a href="tel:+910123456789"> 0123456789</a></td>
-                                                <td>Gloucester</td>
-                                                <td>Date - time</td>
-
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

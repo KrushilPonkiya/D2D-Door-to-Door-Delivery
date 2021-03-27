@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-{% load static %}
+    {% load static %}
     <title>D2D | Sending Packages</title>
 
     <meta charset="UTF-8">
@@ -29,8 +29,7 @@
 
             <a class="navbar-brand" href="{% url 'userdashboard' %}">D2D</a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -66,23 +65,21 @@
                 </ul>
 
                 <ul class="social-icon ml-lg-3">
-                    <li><a href="#" title="Chat" class="fa fa-comment"></a></li>
                     <li>
-                        <div class="dropdown" role="button" id="showNotifications" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a href="#" title="Chat" class="fa fa-comment"></a>
+                    </li>
+                    <li>
+                        <div class="dropdown" role="button" id="showNotifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                             <a href="#" title="Notifications" class="fa fa-bell"></a>
                             <div class="dropdown-menu" aria-labelledby="showNotifications">
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Notification
+                                <a class="dropdown-item notification" href="#" style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Notification
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Another
+                                <a class="dropdown-item notification" href="#" style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Another
                                     notification</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Check
+                                <a class="dropdown-item notification" href="#" style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Check
                                     all</a>
                             </div>
                         </div>
@@ -90,24 +87,21 @@
                     </li>
 
                     <li>
-                        <div class="dropdown" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <a href="#" title="Profile" class="fa fa-user-circle"></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Account
+                                <a class="dropdown-item notification" href="#" style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Account
                                     Settings </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item notification" href="#"
-                                    style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">other
+                                <a class="dropdown-item notification" href="#" style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">other
                                     options</a>
+
                                 <div class="dropdown-divider"></div>
-                                <form action="{% url 'logout' %}">
-                                    <a href="{% url 'logout' %}" class="dropdown-item notification"
-                                        style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;">Logout
-                                    </a>
-                                </form>
+                                <a class="dropdown-item notification nav-link" style="color: #666262; text-align: start; font-size: 0.85rem; padding: 0.25rem 0.3rem; margin: 2px 0px; font-weight: 400;" href="{% url 'logout' %}">
+                                    <span class="no-icon">Log out</span>
+                                </a>
                             </div>
+
                         </div>
                     </li>
                 </ul>
@@ -124,8 +118,7 @@
                 <div class="d-flex flex-column  col-12">
                     <h2 class="mb-4 pb-2 text-center" data-aos="fade-up" data-aos-delay="200">Send anything easily!</h2>
 
-                    <form action="{% url 'handlesendpackage' %}" method="post" class="contact-form" data-aos="fade-up" data-aos-delay="400"
-                        role="form">
+                    <form action="{% url 'handlesendpackage' %}" method="post" class="contact-form" data-aos="fade-up" data-aos-delay="400" role="form">
 
                         <div id="registerForm">
 
@@ -141,25 +134,21 @@
                             </div> -->
                             <div class="form-group ">
                                 <label for="My_username">Your Username</label>
-                                <input type="text" class="form-control" name="My_username" id="My_username" value={{user.username}}
-                                    placeholder={{user.username}} readonly>
+                                <input type="text" class="form-control" name="My_username" id="My_username" value={{user.username}} placeholder={{user.username}} readonly>
                             </div>
                             <div class="form-group ">
                                 <label for="rec_username">I'm Sending to</label>
-                                <input type="text" class="form-control" name="rec_username" id="rec_username"
-                                    placeholder="receiver's username">
+                                <input type="text" class="form-control" name="rec_username" id="rec_username" placeholder="receiver's username">
                             </div>
                             <div class="form-group ">
                                 <label for="product_name">Product Details</label>
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" id="product_name" name="product_name"
-                                            placeholder="Product Name">
+                                        <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Product Name">
 
                                     </div>
                                     <div class="col">
-                                        <input type="number" class="form-control" name="product_weight"
-                                            placeholder="Product weight (approximate) kg">
+                                        <input type="number" class="form-control" name="product_weight" placeholder="Product weight (approximate) kg">
 
                                     </div>
                                 </div>
@@ -170,14 +159,15 @@
                                 <input type="number" class="form-control" name="number" placeholder="Contact number">
                                 <input type="text" class="form-control" name="pickup_add" placeholder="Pickup Address">
                                 <input type="text" class="form-control" name="delivery_add" placeholder="Delivery Address">
+                                <input type="text" class="form-control" name="city" placeholder="City">
                             </div>
 
 
-
                         </div>
-                        <button type="submit" class="form-control mb-1" id="submit-button" name="submit">Send Request</button>
-                        <a class="btn btn-outline-dark mt-0 form-control" href="/user/requestpackege">Request Packages Instead?</a>
-                    {% csrf_token %}
+                        <button type="submit" class="form-control mb-1" id="submit-button" name="submit">Send
+                            Request</button>
+                        <a class="btn btn-outline-dark mt-0 form-control" href="/user/requestpackege">Request Packages
+                            Instead?</a> {% csrf_token %}
                     </form>
                 </div>
 

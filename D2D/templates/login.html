@@ -1,11 +1,12 @@
 {% extends 'index.html' %}
 <title>{% block title %}D2D - Login{% endblock %}</title>
 {% block content %}
+
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
     <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a  class="navbar-brand" href="index.html">D2D</a>
+            <a class="navbar-brand" href="index.html">D2D</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
@@ -25,14 +26,25 @@
                         <a href="{% url 'home' %}" class="nav-link smoothScroll">Contact</a>
                     </li>
                 </ul>
-                 <form action="{% url 'Signup' %}">
-                     <button type="submit" class="btn btn-outline-danger mx-2" >
+                <form action="{% url 'Signup' %}">
+                    <button type="submit" class="btn btn-outline-danger mx-2">
                                 Signup
                      </button>
-                 </form>
+                </form>
             </div>
         </div>
     </nav>
+
+
+    {% for message in messages %}
+    <div id="alert" class="alert mb-0 alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
     <!-- CONTACT -->
     <section class="contact section" id="contact">
         <div class="container">
@@ -41,18 +53,25 @@
                 <div class=" d-flex flex-column text-center col-md-6 col-sm-12">
                     <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Login to your account</h2>
 
-                    <form action="/login" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400"
-                        role="form">
+                    <form action="/login" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
                         <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username">
 
 
                         <input type="password" class="form-control" id="loginpass" name="loginpass" placeholder="Password">
                         <button type="submit" class="form-control mb-1" id="submit-button" name="submit">Login</button>
-                        <a class="btn btn-outline-dark mt-0 form-control" href="{% url 'Signup' %}">Don't have an account?</a>
-                    {% csrf_token %}
+                        <a class="btn btn-outline-dark mt-0 form-control" href="{% url 'Signup' %}">Don't have an account?</a> {% csrf_token %}
                     </form>
                 </div>
             </div>
         </div>
     </section>
-{% endblock%}
+    <script>
+        let alert = document.getElementById('alert');
+        if (alert != null) {
+            setTimeout(() => {
+                $('.alert').alert('close')
+            }, 10000);
+        }
+    </script>
+
+    {% endblock%}
