@@ -19,7 +19,7 @@ function userType() {
 
 
                         <input type="email" class="form-control mt-0" name="email" placeholder="Email">
-                        <input type="number" class="form-control" name="number" placeholder="Contact number">
+                        <input type="number" class="form-control" pattern="[7-9]{1}[0-9]{9}" name="number" placeholder="Contact number" required>
                         <input type="password" class="form-control" name="pass1" placeholder="Password">
                         <input type="password" class="form-control" name="pass2"
                             placeholder="Confirm Password">
@@ -38,17 +38,16 @@ function userType() {
                             </div>
                             <div class="col">
                                 <input type="text" class="form-control mb-1" name="lastname"
-                                    placeholder="Last Name">
+                                    placeholder="Last">
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <input type="email" class="form-control mb-1" name="email" placeholder="Email">
-
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control mb-1" name="number"
+                                <input type="number" class="form-control mb-1" pattern="[7-9]{1}[0-9]{9}" name="number"
                                     placeholder="Contact number">
 
                             </div>
@@ -57,30 +56,21 @@ function userType() {
                         <input type="text" class="form-control mb-1" name="address" placeholder="Address">
                         <div class="row">
                             <div class="col">
-                                <input type="number" class="form-control mb-1" name="aadhar"
-                                    placeholder="Aadhar number">
-
+                                <input type="number" class="form-control mb-1" name="aadhar" placeholder="Aadhar number">
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control mb-1" name="PAN"
-                                    placeholder="PAN number">
-
+                                <input type="text" class="form-control mb-1" name="PAN" placeholder="PAN number">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <input type="number" class="form-control mb-1" name="driving_licence"
-                                    placeholder="Driving licence number">
-
+                                <input type="text" class="form-control mb-1" name="driving_licence" placeholder="Driving licence number">
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control mb-1" name="vehicle_rc"
-                                    placeholder="Vehicle RC number">
-
+                                <input type="text" class="form-control mb-1" name="vehicle_rc" placeholder="Vehicle RC number">
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col">
                                 <input type="password" class="form-control mb-1" name="pass1"

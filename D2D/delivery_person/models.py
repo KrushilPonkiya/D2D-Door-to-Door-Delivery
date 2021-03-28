@@ -1,6 +1,33 @@
 from django.db import models
-# from user.models import *
+#from user.models import *
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from D2D.decorators import allowed_users
+
+
+class DeliveryPersonProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User, on_delete=models.CASCADE,default="")
+    # The additional attributes we wish to include.
+    Phone_Number = models.CharField(max_length=12,default="")
+    Address =  models.TextField(max_length=250)
+    Aadhaar_Number = models.CharField(max_length=12,default="")
+    PAN_Number = models.CharField(max_length=10,default="")
+    Driving_licence_number = models.CharField(max_length=16,default="")
+    Vehicle_RC_number = models.CharField(max_length=16,default="")
+    # Override the __unicode__() method to return out something meaningful!
+
+    def __str__(self):
+        return self.user.username
+
+# @allowed_users(allowed_roles=['Delivery_person'])
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        DeliveryPersonProfile.objects.create(user=instance)
+    else:
+        instance.deliverypersonprofile.save()
 
 
 class Feedback(models.Model):
@@ -12,15 +39,6 @@ class Feedback(models.Model):
     def __str__(self):
         return self.name
 
-
-class Delivery_Person(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.TextField(max_length=250)
-    phone_number = models.IntegerField()
-    aadhaar = models.CharField(max_length=12)
-    PAN_card = models.CharField(max_length=10)
-    Rc_no = models.CharField(max_length=16)
-    Driving_licence = models.CharField(max_length=16)
 
 
 class Order(models.Model):
@@ -61,6 +79,7 @@ class Rejected(models.Model):
     delivery_address = models.TextField(max_length=250, default="")
     delivery_city = models.TextField(max_length=50, default="")
     DateTime =  models.DateTimeField(auto_now=True)
+
 
 class Completed(models.Model):
     completed_id = models.AutoField

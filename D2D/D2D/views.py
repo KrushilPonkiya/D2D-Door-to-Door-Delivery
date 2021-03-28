@@ -6,23 +6,20 @@ from django.contrib.auth.models import User, Group
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from user.models import UserProfile
+from delivery_person.models import DeliveryPersonProfile
 from D2D.decorators import unauthenticated_user
 
-# @user_passes_test(lambda u: u.groups.filter(name='Delivery_person').exists(),   login_url='/delivery/')
-# @user_passes_test(lambda u: u.groups.filter(name='User').exists(),   login_url='/user/')
+
+
 @unauthenticated_user
 def index(request):
     return render(request, 'index.html')
 
-
-# @user_passes_test(lambda u: u.groups.filter(name='Delivery_person').exists(), login_url='/delivery/')
-# @user_passes_test(lambda u: u.groups.filter(name='User').exists(),   )
+@unauthenticated_user
 def Login(request):
     return render(request, 'login.html')
 
-
-# @user_passes_test(lambda u: u.groups.filter(name='Delivery_person').exists(), login_url='/delivery/')
-# @user_passes_test(lambda u: u.groups.filter(name='User').exists(),   login_url='/user/')
+@unauthenticated_user
 def signup(request):
     return render(request, 'signup.html')
 
@@ -34,7 +31,6 @@ def handlesignup(request):
         fname = request.POST.get('firstname')
         lname = request.POST.get('lastname')
         email = request.POST.get('email')
-        Phone_Number = request.POST.get('number')
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
         choice = request.POST.get('user_type')
@@ -56,11 +52,8 @@ def handlesignup(request):
                     u = User.objects.create_user(username=username, password=pass1, email=email, first_name=fname, last_name=lname)
                     group = Group.objects.get(name="Users")
                     u.groups.add(group)
-                    # profile = user.UserProfile.objects.get_or_create(user=u,Phone_Number=Phone_Number)
-                    # profile.save()
+                    u.userprofile.Phone_Number = request.POST['number']
                     u.save()
-                    # print(u)
-                    # print(group)
                     messages.success(request, fname + ' Your D2D Account has been Successfully Created')
                     return redirect('Login')
             else:
@@ -86,8 +79,13 @@ def handlesignup(request):
                                                         first_name=fname, last_name=lname)
                         group = Group.objects.get(name="Delivery_person")
                         user.groups.add(group)
-
-                        user = user.save()
+                        user.deliverypersonprofile.Phone_Number = request.POST['number']
+                        user.deliverypersonprofile.Address = request.POST['address']
+                        user.deliverypersonprofile.Aadhaar_Number = request.POST['aadhar']
+                        user.deliverypersonprofile.PAN_Number = request.POST['PAN']
+                        user.deliverypersonprofile.Driving_licence_number = request.POST['driving_licence']
+                        user.deliverypersonprofile.Vehicle_RC_number = request.POST['vehicle_rc']
+                        user.save()
                         messages.success(request, fname + ' Your D2D Account has been Successfully Created')
                         return redirect('Login')
                 else:
@@ -95,6 +93,7 @@ def handlesignup(request):
                     return redirect("Signup")
     else:
         return HttpResponse('404')
+
 
 
 def handlelogin(request):
@@ -112,6 +111,7 @@ def handlelogin(request):
         else:
             messages.error(request, "Invalid credentials, Please try again")
             return redirect('Login')
+
 
 
 def handlelogout(request):
